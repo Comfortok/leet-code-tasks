@@ -3,13 +3,19 @@
 
 public class Solution extends VersionControl {
     public int firstBadVersion(int n) {
+        // int start = 1, end = n;
+        // while (start < end) {
+            // int mid = start + (end-start) / 2;
+            // if (!isBadVersion(mid)) {
+                // start = mid + 1;
+            // } else {
+                // end = mid;            
+            // }
+        // }        
+        
+        // return start;
         int mid = n / 2;
         return getFirstBadVersion(mid, n);
-    }
-    
-    @Override
-    public boolean isBadVersion(int version) {
-        return super.isBadVersion(version);
     }
     
     public int getFirstBadVersion(int mid, int n) {
