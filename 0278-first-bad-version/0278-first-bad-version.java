@@ -25,7 +25,7 @@ public class Solution extends VersionControl {
         if (isBadVersion(mid)) {
             result = getFirstBadVersion(mid / 2, mid);
         } else {
-            result = getFirstBadVersion((int) (((long) mid + (long) n) / 2), n);
+            result = getFirstBadVersion(mid + ((n - mid) / 2), n);
         }
         
         return result;
