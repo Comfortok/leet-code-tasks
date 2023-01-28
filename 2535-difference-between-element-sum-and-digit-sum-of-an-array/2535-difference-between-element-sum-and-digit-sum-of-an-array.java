@@ -5,8 +5,9 @@ class Solution {
         for (int i = 0; i < nums.length; i++) {
             elementSum += nums[i];
             String strNum = String.valueOf(nums[i]);
-            for (int j = 0; j < strNum.length(); j++) {
-                digitSum += ((int)strNum.charAt(j) - 48);
+            while(nums[i] != 0){
+                digitSum += nums[i] % 10;
+                nums[i] /= 10;
             }
         }
         
