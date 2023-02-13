@@ -1,6 +1,5 @@
 class Solution {
-    public boolean isPalindrome(String s) {
-        StringBuilder str = new StringBuilder(s.trim().toLowerCase());
+    public boolean isPalindrome(String str) {
         String validSymbols = "abcdefghijklmnopqrstuvwxyz0123456789";
 
         if (str.length() < 2) {
@@ -10,17 +9,16 @@ class Solution {
         int i = 0;
         int j = str.length() - 1;
         while (i < j) {
-            if (!validSymbols.contains(String.valueOf(str.charAt(i))) || !validSymbols.contains(String.valueOf(str.charAt(j)))) {
-                if (!validSymbols.contains(String.valueOf(str.charAt(i)))) {
-                    str.deleteCharAt(i);
-                    j--;
-                } 
-                if (!validSymbols.contains(String.valueOf(str.charAt(j)))) {
-                    str.deleteCharAt(j);
+            if (!validSymbols.contains(String.valueOf(str.charAt(i)).toLowerCase())
+                    || !validSymbols.contains(String.valueOf(str.charAt(j)).toLowerCase())) {
+                if (!validSymbols.contains(String.valueOf(str.charAt(i)).toLowerCase())) {
+                    i++;
+                }
+                if (!validSymbols.contains(String.valueOf(str.charAt(j)).toLowerCase())) {
                     j--;
                 }
             } else {
-                if (str.charAt(i) != str.charAt(j)) {
+                if (!String.valueOf(str.charAt(i)).equalsIgnoreCase(String.valueOf(str.charAt(j)))) {
                     return false;
                 } else {
                     i++;
