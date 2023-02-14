@@ -7,6 +7,10 @@ class Solution {
                 if (nums[i] >= x) {
                     count++;
                 }
+                
+                if (count > x) {
+                    break;
+                }
             }
             
             if (x == count) {
