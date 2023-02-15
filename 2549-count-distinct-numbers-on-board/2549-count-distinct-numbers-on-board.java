@@ -1,7 +1,8 @@
 class Solution {
     
     public int distinctIntegers(int n) {
-        return Math.max(n - 1, 1);
+        return (n - 1 > 1) ? n - 1 : 1;
+        // return Math.max(n - 1, 1);
     }
     
 }
