@@ -1,11 +1,14 @@
 class Solution {
     public long findTheArrayConcVal(int[] nums) {
         long result = 0;
-        Deque<Integer> deque = new ArrayDeque<>(Arrays.stream(nums).boxed().collect(Collectors.toList()));
-        while (!deque.isEmpty()) {
-            String first = deque.pollFirst().toString();
-            String last = deque.isEmpty() ? "" : deque.pollLast().toString();
+        int i = 0;
+        int j = nums.length - 1;
+        while (i < j || i == j) {
+            String first = String.valueOf(nums[i]);
+            String last = i == j ? "" : String.valueOf(nums[j]);
             result += Long.parseLong(first + last);
+            i++;
+            j--;
         }
 
         return result;
