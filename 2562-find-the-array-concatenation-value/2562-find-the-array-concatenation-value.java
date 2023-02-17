@@ -4,9 +4,11 @@ class Solution {
         int i = 0;
         int j = nums.length - 1;
         while (i < j || i == j) {
-            String first = String.valueOf(nums[i]);
-            String last = i == j ? "" : String.valueOf(nums[j]);
-            result += Long.parseLong(first + last);
+            int first = nums[i];
+            int last = i == j ? -1 : nums[j];
+            int zeroCount = (int) (Math.log10(last) + 1);
+            long con = last != -1 ? (first * (int) Math.pow(10, zeroCount)) + last : first;
+            result += con;
             i++;
             j--;
         }
