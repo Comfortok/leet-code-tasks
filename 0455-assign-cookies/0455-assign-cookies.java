@@ -1,15 +1,13 @@
 class Solution {
     public int findContentChildren(int[] g, int[] s) {
+        Arrays.sort(g);
+        Arrays.sort(s);
+        
         int count = 0;
-        List<Integer> children = new ArrayList<>(Arrays.stream(g).boxed().collect(Collectors.toList()));
-        Collections.sort(children);
-        List<Integer> cookies = new ArrayList<>(Arrays.stream(s).boxed().collect(Collectors.toList()));
-        Collections.sort(cookies);
-
-        int i = children.size() - 1;
-        int j = cookies.size() - 1;
+        int i = g.length - 1;
+        int j = s.length - 1;
         while (i >= 0 && j >= 0) {
-            if (cookies.get(j) >= children.get(i)) {
+            if (s[j] >= g[i]) {
                 count++;
                 i--;
                 j--;
