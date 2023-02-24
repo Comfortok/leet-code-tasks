@@ -1,60 +1,24 @@
 class Solution {
     public boolean lemonadeChange(int[] bills) {
-Map<Integer, Integer> map = new HashMap<>();
-        if (bills[0] != 5) {
-            return false;
-        }
+                int five = 0;
+        int ten = 0;
 
         for (int bill : bills) {
             if (bill == 5) {
-                map.put(bill, map.getOrDefault(bill, 0) + 1);
+                five++;
             } else if (bill == 10) {
-                if (!map.containsKey(5)) {
-                    return false;
-                } else {
-                    if (map.get(5) > 0) {
-                        int val = map.get(5) - 1;
-                        if (val == 0) {
-                            map.remove(5);
-                        } else {
-                            map.put(5, val);
-                        }
-                    }
-                    map.put(10, map.getOrDefault(10, 0) + 1);
-                }
+                ten++;
+                five--;
+            } else if (ten > 0) {
+                five--;
+                ten--;
             } else {
-                if (!map.containsKey(5)) {
-                    return false;
-                } else {
-                    if (map.containsKey(10)) {
-                        int tenVal = map.get(10) - 1;
-                        int fiveVal = map.get(5) - 1;
-                        if (tenVal == 0) {
-                            map.remove(10);
-                        } else {
-                            map.put(10, tenVal);
-                        }
-
-                        if (fiveVal == 0) {
-                            map.remove(5);
-                        } else {
-                            map.put(5, fiveVal);
-                        }
-                    } else {
-                        int fiveVal = map.get(5) - 3;
-                        if (fiveVal < 0) {
-                            return false;
-                        } else if (fiveVal == 0) {
-                            map.remove(5);
-                        } else {
-                            map.put(5, fiveVal);
-                        }
-                    }
-
-                    map.put(20, map.getOrDefault(20, 0) + 1);
-                }
+                five -= 3;
             }
 
+            if (five < 0) {
+                return false;
+            }
         }
 
         return true;
