@@ -13,8 +13,6 @@ class Solution {
                 j++;
                 if (j == matrix[0].length) {
                     int k = 0;
-                    int maxRow = 0;
-                    int maxRowIndex = 0;
                     while (k < matrix.length) {
                         if (k != i) {
                             if (matrix[i][minRowIndex] < matrix[k][minRowIndex]) {
