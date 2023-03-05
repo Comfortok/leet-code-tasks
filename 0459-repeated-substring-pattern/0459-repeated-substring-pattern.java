@@ -1,7 +1,7 @@
 class Solution {
     public boolean repeatedSubstringPattern(String s) {
         boolean result = false;
-        for (int i = 1; i <= s.length() / 2; i++) {
+        for (int i = s.length() / 2; i > 0; i--) {
             if (result == true) {
                 return result;
             }
