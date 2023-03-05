@@ -5,8 +5,11 @@ class Solution {
             if (result == true) {
                 return result;
             }
-            String sub = s.substring(0, i);
-            result = getResult(s, sub);
+            
+            if (s.length() % i == 0) {
+                String sub = s.substring(0, i);
+                result = getResult(s, sub);
+            }
         }
         
         return result;
