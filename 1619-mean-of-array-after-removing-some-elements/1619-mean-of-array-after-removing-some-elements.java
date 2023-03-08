@@ -8,12 +8,6 @@ class Solution {
             sum += arr[i];
         }
 
-        double size = arr.length - (fivePercent * 2);
-
-        int multiplier = (int) Math.pow(10, 5);
-        double result = sum / size;
-        String strResult = String.valueOf(result);
-
-        return (double) ((long) ((Double.parseDouble(strResult)) * multiplier)) / multiplier;
+        return (double) sum / (double) (arr.length - (fivePercent * 2));
     }
 }
