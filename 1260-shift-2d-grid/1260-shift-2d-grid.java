@@ -3,6 +3,7 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
 
+        k = k % (m * n);
         while (k > 0) {
             int a = grid[m - 1][n - 1];
             Integer temp = null;
