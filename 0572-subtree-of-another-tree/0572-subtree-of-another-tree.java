@@ -15,33 +15,14 @@
  */
 class Solution {
     public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        List<TreeNode> validHeads = new ArrayList<>();
-        findValidHeads(root, subRoot, validHeads);
-
-        if (validHeads.isEmpty()) {
-            return false;
-        } else {
-            for (TreeNode treeNode : validHeads) {
-                if (isEqual(treeNode, subRoot)) {
-                    return true;
-                }
-            }
-        }
-
-        return false;
-    }
-    
-    private void findValidHeads(TreeNode root, TreeNode subRoot, List<TreeNode> validHeads) {
         if (root == null) {
-            return;
+            return false;
+        }
+        if (isEqual(root, subRoot)) {
+            return true;
         }
 
-        if (root.val == subRoot.val) {
-            validHeads.add(root);
-        }
-
-        findValidHeads(root.left, subRoot, validHeads);
-        findValidHeads(root.right, subRoot, validHeads);
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
     }
     
     private boolean isEqual(TreeNode root, TreeNode subRoot) {
@@ -50,11 +31,12 @@ class Solution {
         } else if (root == null || subRoot == null) {
             return false;
         }
-
-        if (root.val == subRoot.val) {
-            return isEqual(root.left, subRoot.left) && isEqual(root.right, subRoot.right);
-        } else {
+        
+        if (root.val != subRoot.val) {
             return false;
         }
+
+        
+        return isEqual(root.left, subRoot.left) && isEqual(root.right, subRoot.right);
     }
 }
