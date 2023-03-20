@@ -9,7 +9,13 @@ class Solution {
             }
         }
         
-        String result = hasDigit ? String.valueOf(a) + String.valueOf(a) + String.valueOf(a) : "";
-        return result;
+        StringBuilder result = new StringBuilder(3);
+        if (hasDigit) {
+            result.append(a);
+            result.append(a);
+            result.append(a);
+        }
+        
+        return result.toString();
     }
 }
