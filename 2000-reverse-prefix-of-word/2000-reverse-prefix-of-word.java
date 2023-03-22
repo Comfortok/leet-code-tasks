@@ -12,11 +12,8 @@ class Solution {
             return word;
         }
         
-        StringBuilder sb = new StringBuilder();
-        for (int i = end; i >= 0; i--) {
-            sb.append(String.valueOf(word.charAt(i)));
-        }
+        StringBuilder sb = new StringBuilder(word.substring(0, end + 1));
         
-        return sb.toString() + word.substring(end + 1);
+        return sb.reverse().toString() + word.substring(end + 1);
     }
 }
