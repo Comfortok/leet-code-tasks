@@ -1,9 +1,11 @@
 class MyStack {
 
-    private Queue<Integer> main = new LinkedList<>();
-    private Queue<Integer> temp = new LinkedList<>();
+    private Queue<Integer> main;
+    private Queue<Integer> temp;
     
     public MyStack() {
+        main = new LinkedList<>();
+        temp = new LinkedList<>();
     }
     
     public void push(int x) {
