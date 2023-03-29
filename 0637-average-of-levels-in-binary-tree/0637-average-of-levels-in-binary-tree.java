@@ -15,45 +15,25 @@
  */
 class Solution {
     public List<Double> averageOfLevels(TreeNode root) {
-        Map<Integer, List<Integer>> map = new HashMap<>();
-        fillTheMap(map, root, 1);
-
         List<Double> result = new ArrayList<>();
-        for (Map.Entry<Integer, List<Integer>> entry : map.entrySet()) {
-            long sum = entry.getValue()
-                    .stream()
-                    .mapToLong(Long::valueOf)
-                    .sum();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
 
-            double average = (double) sum / entry.getValue().size();
+        while (!queue.isEmpty()) {
+            int levelSize = queue.size();
+            double levelSum = 0.0;
 
-            result.add(Math.round(average * 100000d) / 100000d);
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode node = queue.poll();
+                levelSum += node.val;
+
+                if (node.left != null) queue.offer(node.left);
+                if (node.right != null) queue.offer(node.right);
+            }
+
+            result.add(levelSum / levelSize);
         }
 
         return result;
-    }
-    
-    private int fillTheMap(Map<Integer, List<Integer>> map, TreeNode node, int level) {
-        if (node == null) {
-            return level--;
-        }
-
-        if (map.containsKey(level)) {
-            List<Integer> list = map.get(level);
-            list.add(node.val);
-            map.put(level, list);
-        } else {
-            List<Integer> list = new ArrayList<>();
-            list.add(node.val);
-            map.put(level, list);
-        }
-
-        int left = fillTheMap(map, node.left, level + 1);
-
-        int right = fillTheMap(map, node.right, level + 1);
-
-        level--;
-
-        return level;
     }
 }
