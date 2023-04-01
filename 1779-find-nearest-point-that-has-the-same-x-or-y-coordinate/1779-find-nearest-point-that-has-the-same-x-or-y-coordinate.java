@@ -7,6 +7,10 @@ class Solution {
             int b = points[i][1];
             if (a == x || b == y) {
                 int distance = Math.abs(x - a) + Math.abs(y - b);
+                if (distance == 0) {
+                    return i;
+                }
+                
                 if (shortest == -1 || distance < shortest) {
                     shortest = distance;
                     result = i;
