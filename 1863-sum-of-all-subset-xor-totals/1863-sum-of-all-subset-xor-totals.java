@@ -1,35 +1,22 @@
 class Solution {
     public int subsetXORSum(int[] nums) {
+        int n = nums.length;
         int total = 0;
-        List<List<Integer>> list = getSubLists(nums);
-        for (List<Integer> integerList : list) {
+
+        for (int i = 0; i < (1 << n); i++) {
             int subTotal = 0;
-            for (Integer num : integerList) {
-                subTotal ^= num;
+            int m = 1; // m is used to check set bit in binary representation.
+            for (int num : nums) {
+                if ((i & m) > 0) {
+                    subTotal ^= num;
+                }
+                m = m << 1;
             }
+
             total += subTotal;
         }
 
         return total;
     }
     
-    private List<List<Integer>> getSubLists(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        int n = nums.length;
-
-        // Run a loop from 0 to 2^n
-        for (int i = 0; i < (1 << n); i++) {
-            List<Integer> subList = new ArrayList<>();
-            int m = 1; // m is used to check set bit in binary representation.
-            for (int num : nums) {
-                if ((i & m) > 0) {
-                    subList.add(num);
-                }
-                m = m << 1;
-            }
-            result.add(subList);
-        }
-
-        return result;
-    }
 }
