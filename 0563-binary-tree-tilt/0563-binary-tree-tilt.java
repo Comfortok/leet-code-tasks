@@ -14,33 +14,23 @@
  * }
  */
 class Solution {
+    int tilt = 0;
+    
     public int findTilt(TreeNode root) {
-        Queue<TreeNode> nodes = new LinkedList<>();
-        List<Integer> list = new ArrayList<>();
-        nodes.offer(root);
-        while (!nodes.isEmpty()) {
-            TreeNode node = nodes.poll();
-            if (node != null) {
-                int left = getSum(node.left, 0);
-                int right = getSum(node.right, 0);
-                list.add(Math.abs(left - right));
-                nodes.offer(node.left);
-                nodes.offer(node.right);
-            }
-        }
-
-        return list.stream().reduce(0, Integer::sum);
+        getSum(root);
+        return tilt;
     }
     
-    private int getSum(TreeNode node, int total) {
+    private int getSum(TreeNode node) {
         if (node == null) {
-            return total;
+            return 0;
         }
 
-        int left = getSum(node.left, total);
-        int right = getSum(node.right, total);
+        int left = getSum(node.left);
+        int right = getSum(node.right);
 
-        total = total + node.val + left + right;
-        return total;
+
+        tilt = tilt + Math.abs(left - right);
+        return left + right + node.val;
     }
 }
