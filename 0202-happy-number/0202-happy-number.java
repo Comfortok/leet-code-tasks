@@ -1,18 +1,24 @@
 class Solution {
     public boolean isHappy(int n) {
-        StringBuilder sb = new StringBuilder(String.valueOf(n));
-        while (!sb.toString().equals("1")) {
-            if (Integer.parseInt(sb.toString()) <= 4) {
-                return false;
+        int sum = 0;
+        while (true) {
+            if (n < 10) {
+                if (sum == 0 && (n % 4 == 0 || n % 3 == 0 || n % 5 == 0)) {
+                    return false;
+                } else {
+                    sum = sum + (n * n);
+                    if (sum == 1) {
+                        return true;
+                    } else {
+                        n = sum;
+                        sum = 0;
+                    }
+                }
+            } else {
+                int a = n % 10;
+                sum = sum + (a * a);
+                n = n / 10;
             }
-            int sum = 0;
-            for (int i = 0; i < sb.length(); i++) {
-                int a = sb.charAt(i) - '0';
-                sum += (a * a);
-            }
-            sb = new StringBuilder(String.valueOf(sum));
         }
-
-        return true;
     }
 }
