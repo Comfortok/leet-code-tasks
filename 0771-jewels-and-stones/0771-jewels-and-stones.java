@@ -1,8 +1,8 @@
 class Solution {
     public int numJewelsInStones(String jewels, String stones) {
         int result = 0;
-        for (int i = 0; i < stones.length(); i++) {
-            if (jewels.contains(String.valueOf(stones.charAt(i)))) {
+        for (char ch : stones.toCharArray()) {
+            if (jewels.indexOf(ch) != -1) {
                 result++;
             }
         }
