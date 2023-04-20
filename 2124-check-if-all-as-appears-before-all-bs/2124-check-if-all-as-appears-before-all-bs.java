@@ -1,9 +1,5 @@
 class Solution {
-    public boolean checkString(String s) {
-        if (!s.contains("a") || !s.contains("b")) {
-            return true;
-        }
-        
+    public boolean checkString(String s) {        
         String[] str = s.split("b");
         if (str.length > 1) {
             return false;
