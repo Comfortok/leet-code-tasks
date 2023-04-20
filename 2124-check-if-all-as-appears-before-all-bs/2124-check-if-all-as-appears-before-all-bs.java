@@ -1,7 +1,6 @@
 class Solution {
-    public boolean checkString(String s) {        
-        String[] str = s.split("b");
-        if (str.length > 1) {
+    public boolean checkString(String s) {
+        if (s.lastIndexOf("ba") != -1) {
             return false;
         }
         
