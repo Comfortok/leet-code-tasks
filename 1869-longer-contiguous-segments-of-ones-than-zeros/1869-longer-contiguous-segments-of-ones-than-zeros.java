@@ -1,20 +1,22 @@
 class Solution {
     public boolean checkZeroOnes(String s) {
-        String[] ones = s.split("0");
-        String[] zeros = s.split("1");
-        int lOnes = getMaxLength(ones);
-        int lZeros = getMaxLength(zeros);
-        return lOnes > lZeros;
-    }
-    
-    private int getMaxLength(String[] arr) {
-        int max = 0;
-        for (String str : arr) {
-            if (str.length() > max) {
-                max = str.length();
+        int maxOnes = 0;
+        int maxZeros = 0;
+        int zeros = 0;
+        int ones = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '1') {
+                ones++;
+                maxOnes = Math.max(maxOnes, ones);
+                zeros = 0;
+            } else {
+                zeros++;
+                maxZeros = Math.max(maxZeros, zeros);
+                ones = 0;
             }
         }
         
-        return max;
+        return maxOnes > maxZeros;
     }
+    
 }
