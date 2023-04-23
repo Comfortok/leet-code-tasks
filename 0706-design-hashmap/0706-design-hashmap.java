@@ -1,9 +1,10 @@
 class MyHashMap {
     
-    private Integer[] arr;
+    private int[] arr;
 
     public MyHashMap() {
-        arr = new Integer[1_000_001];
+        arr = new int[1_000_001];
+        Arrays.fill(arr, -1);
     }
     
     public void put(int key, int value) {
@@ -11,16 +12,11 @@ class MyHashMap {
     }
     
     public int get(int key) {
-        if (this.arr[key] == null) {
-            return -1;
-        }
         return this.arr[key];
     }
     
     public void remove(int key) {
-        if (this.arr[key] != null) {
-            this.arr[key] = null;
-        }
+        this.arr[key] = -1;
     }
 }
 
