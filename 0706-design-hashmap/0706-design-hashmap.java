@@ -1,29 +1,25 @@
 class MyHashMap {
     
-    private Integer[] keys;
-    private Integer[] values;
+    private Integer[] arr;
 
     public MyHashMap() {
-        keys = new Integer[1_000_001];
-        values = new Integer[1_000_001];
+        arr = new Integer[1_000_001];
     }
     
     public void put(int key, int value) {
-        this.keys[key] = key;
-        this.values[key] = value;
+        this.arr[key] = value;
     }
     
     public int get(int key) {
-        if (this.values[key] == null) {
+        if (this.arr[key] == null) {
             return -1;
         }
-        return this.values[key];
+        return this.arr[key];
     }
     
     public void remove(int key) {
-        if (this.values[key] != null) {
-            this.values[key] = null;
-            this.keys[key] = null;
+        if (this.arr[key] != null) {
+            this.arr[key] = null;
         }
     }
 }
