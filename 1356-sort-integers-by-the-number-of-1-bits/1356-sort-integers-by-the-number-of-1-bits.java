@@ -1,7 +1,6 @@
 class Solution {
     public int[] sortByBits(int[] arr) {
         int[] bits = new int[arr.length];
-        int[] res = new int[arr.length];
         for (int i = 0; i < arr.length; i++) {
             bits[i] = Integer.bitCount(arr[i]);
         }
