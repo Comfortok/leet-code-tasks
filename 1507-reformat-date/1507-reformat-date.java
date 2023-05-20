@@ -1,30 +1,29 @@
 class Solution {
     public String reformatDate(String date) {
-        String[] parts = date.split(" ");
         String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
-        String month = "";
+
+        String[] split = date.split(" ");
+        StringBuilder sb = new StringBuilder();
+        sb.append(split[2]).append("-");
+        int monthNum = 0;
         for (int i = 0; i < months.length; i++) {
-            if (months[i].equals(parts[1])) {
-                if (i < 9) {
-                    month = "0" + (i + 1);
-                } else {
-                    month = String.valueOf(i + 1);
-                }
+            if (split[1].equals(months[i])) {
+                monthNum = i + 1;
                 break;
             }
         }
-
-        String year = parts[2];
-        String day = "";
-        if (parts[0].substring(0, 2).toLowerCase().equals(parts[0].substring(0, 2).toUpperCase())) {
-            day = parts[0].substring(0, 2);
+        if (monthNum > 9) {
+            sb.append(monthNum);
         } else {
-            day = parts[0].substring(0, 1);
+            sb.append("0").append(monthNum);
         }
-        if (Integer.parseInt(day) < 10) {
-            day = "0" + day;
-        }
+        sb.append("-");
 
-        return year + "-" + month + "-" + day;
+        if (split[0].length() == 3) {
+            sb.append("0").append(split[0].charAt(0));
+        } else {
+            sb.append(split[0].charAt(0)).append(split[0].charAt(1));
+        }
+        return sb.toString();
     }
 }
