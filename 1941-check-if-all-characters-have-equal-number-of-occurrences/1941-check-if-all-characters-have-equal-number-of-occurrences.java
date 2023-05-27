@@ -1,16 +1,16 @@
 class Solution {
     public boolean areOccurrencesEqual(String s) {
-        Map<Character, Integer> map = new HashMap<>();
+        int[] table = new int[26];
         for (int i = 0; i < s.length(); i++) {
             char ch = s.charAt(i);
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            table[ch - 'a']++;
         }
         
         int count = 0;
-        for (int value : map.values()) {
+        for (int value : table) {
             if (count == 0) {
                 count = value;
-            } else if (value != count) {
+            } else if (value != 0 && value != count) {
                 return false;
             }
         }
