@@ -6,15 +6,11 @@ class Solution {
             if (nums[i] == 1) {
                 current++;
             } else {
-                max = max > current ? max : current;
+                max = Math.max(max, current);
                 current = 0;
-            }
-            
-            if (i == nums.length - 1) {
-                max = max > current ? max : current;
             }
         }
         
-        return max;
+        return Math.max(max, current);
     }
 }
