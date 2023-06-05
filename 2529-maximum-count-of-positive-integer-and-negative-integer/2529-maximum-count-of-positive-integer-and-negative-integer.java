@@ -6,7 +6,8 @@ class Solution {
             if (nums[i] < 0) {
                 neg++;
             } else if (nums[i] > 0) {
-                pos++;
+                pos = nums.length - i;
+                break;
             }
         }
         
