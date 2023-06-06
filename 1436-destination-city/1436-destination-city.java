@@ -1,12 +1,16 @@
 class Solution {
     public String destCity(List<List<String>> paths) {
-        List<String> list = paths
-                .stream()
-                .map(cities -> cities.get(1))
-                .toList();
-        return list.stream()
-                .filter(city -> !paths.stream().map(cities -> cities.get(0)).toList().contains(city))
-                .findAny()
-                .get();
+        Map<String, Integer> map = new HashMap<>();
+        for (List<String> list : paths) {
+            map.put(list.get(0), 1);
+        }
+
+        for (List<String> list : paths) {
+            if (map.get(list.get(1)) == null) {
+                return list.get(1);
+            }
+        }
+
+        return "";
     }
 }
