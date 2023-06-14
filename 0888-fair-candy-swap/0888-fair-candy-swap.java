@@ -2,7 +2,6 @@ class Solution {
     public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
         int aliceTotal = 0;
         int bobTotal = 0;
-        int[] ans = new int[2];
         for (int num : aliceSizes) {
             aliceTotal += num;
         }
@@ -20,6 +19,6 @@ class Solution {
             }
         }
         
-        return ans;
+        return new int[]{0, 0};
     }
 }
