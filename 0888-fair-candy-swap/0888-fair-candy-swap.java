@@ -2,23 +2,24 @@ class Solution {
     public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
         int aliceTotal = 0;
         int bobTotal = 0;
+        Set<Integer> set = new HashSet<>();
+        
         for (int num : aliceSizes) {
             aliceTotal += num;
         }
         for (int num : bobSizes) {
             bobTotal += num;
+            set.add(num);
         }
+        
+        int d = (bobTotal - aliceTotal) / 2;
 
-        for (int i = 0; i < aliceSizes.length; i++) {
-            for (int j = 0; j < bobSizes.length; j++) {
-                if (aliceSizes[i] != bobSizes[j]) {
-                    if (aliceTotal - aliceSizes[i] + bobSizes[j] == bobTotal - bobSizes[j] + aliceSizes[i]) {
-                        return new int[]{aliceSizes[i], bobSizes[j]};
-                    }
-                }
+        for (int num : aliceSizes) {
+            if (set.contains(num + d)) {
+                return new int[]{num, num + d};
             }
         }
         
-        return new int[]{0, 0};
+        return new int[0];
     }
 }
