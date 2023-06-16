@@ -1,42 +1,17 @@
 class Solution {
     public String toGoatLatin(String sentence) {
-        StringBuilder sb = new StringBuilder();
-        boolean isNewWord = true;
-        String as = "a";
-        String ma = "";
-        for (int i = 0; i < sentence.length(); i++) {
-            char ch = sentence.charAt(i);
-            if (isNewWord) {
-                if (i == sentence.length() - 1) {
-                    sb.append(String.valueOf(ch));
-                    sb.append("ma");
-                    sb.append(as);
-                } else {
-                    if (ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U' || ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
-                        ma = "ma";
-                        sb.append(String.valueOf(ch));
-                    } else {
-                        ma = String.valueOf(ch) + "ma";
-                    }
-                }
-                
-                isNewWord = false;
-            } else if (ch == ' ' || i == sentence.length() - 1) {
-                isNewWord = true;
-                if (i == sentence.length() - 1) {
-                    sb.append(String.valueOf(ch));
-                    sb.append(ma);
-                    sb.append(as);
-                } else {
-                    sb.append(ma);
-                    sb.append(as + " ");
-                }
-                as = as.concat("a");
+        String[] words = sentence.split("\\s+");
+        StringBuilder res = new StringBuilder();
+        StringBuilder as = new StringBuilder();
+        for (int i = 0; i < words.length; i++) {
+            if (!"aeiouAEIOU".contains(words[i].charAt(0) + "")) {
+                res.append(words[i].substring(1)).append(words[i].charAt(0)).append("maa").append(as + " ");
             } else {
-                sb.append(String.valueOf(ch));
+                res.append(words[i]).append("maa").append(as + " ");
             }
+            as.append("a");
         }
         
-        return sb.toString();
+        return res.toString().trim();
     }
 }
