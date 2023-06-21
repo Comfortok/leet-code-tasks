@@ -1,25 +1,18 @@
 class Solution {
     public String sortSentence(String s) {
-        StringBuilder sb = new StringBuilder();
-        int index = 1;
-        int i = s.indexOf(String.valueOf(index));
-        while (i != -1) {
-            int spaceIndex = 0;
-            for (int j = i; j >= 0; j--) {
-                if (s.charAt(j) == ' ') {
-                    spaceIndex = j;
-                    break;
-                }
-            }
-            
-            spaceIndex = spaceIndex == 0 ? 0 : spaceIndex + 1;
-            String word = s.substring(spaceIndex, i) + " ";
-            sb.append(word);
-            i = s.indexOf(String.valueOf(++index)); 
+        String[] arr = s.split(" ");
+        String[] res = new String[arr.length];
+        int index = 0;
+        for (String str : arr) {
+            index = (int) (str.charAt(str.length() - 1) - '0');
+            res[index - 1] = str.substring(0, str.length() - 1);
         }
         
-        sb.deleteCharAt(sb.length() - 1);
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < res.length; i++) {
+            sb.append(res[i]).append(" ");
+        }
         
-        return sb.toString();
+        return sb.toString().trim();
     }
 }
