@@ -1,16 +1,18 @@
 class Solution {
     public int[] maxSubsequence(int[] nums, int k) {
         int[] result = new int[k];
-        int[] index = IntStream.range(0, nums.length)
-            .boxed()
-            .sorted((o1, o2) -> nums[o2] - nums[o1])
-            .mapToInt(Integer::intValue)
-            .toArray();
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.comparingInt(i -> nums[i]));
+        for (int i = 0; i < nums.length; i++) {
+            pq.offer(i);
+            if (pq.size() > k) {
+                pq.poll();
+            }
+        }
 
-        Arrays.sort(index, 0, k);
-
+        PriorityQueue<Integer> rq = new PriorityQueue<>(Comparator.comparingInt(i -> i));
+        rq.addAll(pq);
         for (int i = 0; i < k; i++) {
-            result[i] = nums[index[i]];   
+            result[i] = nums[rq.poll()];
         }
 
         return result;
