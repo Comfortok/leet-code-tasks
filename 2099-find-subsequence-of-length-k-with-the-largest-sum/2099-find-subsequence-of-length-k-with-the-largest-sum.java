@@ -1,20 +1,21 @@
 class Solution {
     public int[] maxSubsequence(int[] nums, int k) {
-        int[] result = new int[k];
-        PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.comparingInt(i -> nums[i]));
+        PriorityQueue<Integer> pq = new PriorityQueue<>((o1, o2) -> Integer.compare(nums[o1], nums[o2]));
         for (int i = 0; i < nums.length; i++) {
-            pq.offer(i);
-            if (pq.size() > k) {
-                pq.poll();
+            if (pq.size() < k) {
+                pq.add(i); 
+            } else if (nums[pq.peek()] < nums[i]) {
+                pq.poll(); // remove an index of the smallest number
+                pq.add(i);
+            }
+        }        
+        int[] res = new int[k];
+        Set<Integer> indexes = new HashSet<>(pq);
+        for (int i = 0, j = 0; i < nums.length; i++) {
+            if (indexes.contains(i)) {
+                res[j++] = nums[i];
             }
         }
-
-        PriorityQueue<Integer> rq = new PriorityQueue<>(Comparator.comparingInt(i -> i));
-        rq.addAll(pq);
-        for (int i = 0; i < k; i++) {
-            result[i] = nums[rq.poll()];
-        }
-
-        return result;
+        return res;
     }
 }
