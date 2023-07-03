@@ -4,11 +4,8 @@ class Solution {
             return false;
         }
         
-        String lowers = "qwertyuiopasdfghjklzxcvbnm";
-        String uppers = "QWERTYUIOPASDFGHJKLZXCVBNM";
         String specials = "!@#$%^&*()-+";
-        String digits = "1234567890";
-            
+ 
         boolean hasLowercase = false;
         boolean hasUppercase = false;
         boolean hasSpecialChar = false;
@@ -18,16 +15,16 @@ class Solution {
             if (i != 0 && password.charAt(i - 1) == ch) {
                 return false;
             }
-            if (!hasLowercase && lowers.contains(String.valueOf(ch))) {
+            if (!hasLowercase && ch >= 'a' && ch <= 'z') {
                 hasLowercase = true;
             }
-            if (!hasUppercase  && uppers.contains(String.valueOf(ch))) {
+            if (!hasUppercase  && ch >= 'A' && ch <= 'Z') {
                 hasUppercase = true;
             }
             if (!hasSpecialChar && specials.contains(String.valueOf(ch))) {
                 hasSpecialChar = true;
             }
-            if (!hasDigit && digits.contains(String.valueOf(ch))) {
+            if (!hasDigit && ch >= '0' && ch <= '9') {
                 hasDigit = true;
             }
         }
