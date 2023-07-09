@@ -1,15 +1,19 @@
 class Solution {
     public int minLength(String s) {
-        while (s.contains("AB") || s.contains("CD")) {
-            if (s.contains("AB")) {
-                int index = s.indexOf("AB");
-                s = s.substring(0, index) + s.substring(index + 2);
+        StringBuilder sb = new StringBuilder(s);
+        int i = 0;
+        while (i < sb.length() - 1) {
+            if (sb.charAt(i) == 'A' && sb.charAt(i + 1) == 'B') {
+                sb.delete(i, i + 2);
+                i = Math.max(0, i - 1);
+            } else if (sb.charAt(i) == 'C' && sb.charAt(i + 1) == 'D') {
+                sb.delete(i, i + 2);
+                i = Math.max(0, i - 1);
             } else {
-                int index2 = s.indexOf("CD");
-                s = s.substring(0, index2) + s.substring(index2 + 2);
+                i++;
             }
         }
         
-        return s.length();
+        return sb.length();
     }
 }
