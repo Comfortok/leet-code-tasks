@@ -1,13 +1,15 @@
 class Solution {
     public int minLength(String s) {
-        StringBuilder sb = new StringBuilder(s);
-        while (sb.indexOf("AB") != -1 || sb.indexOf("CD") != -1) {
-            int a = sb.indexOf("AB");
-            if (a != -1) sb.delete(a, a + 2);
-            int b = sb.indexOf("CD");
-            if (b != -1) sb.delete(b, b + 2);
+        while (s.contains("AB") || s.contains("CD")) {
+            if (s.contains("AB")) {
+                int index = s.indexOf("AB");
+                s = s.substring(0, index) + s.substring(index + 2);
+            } else {
+                int index2 = s.indexOf("CD");
+                s = s.substring(0, index2) + s.substring(index2 + 2);
+            }
         }
         
-        return sb.toString().length();
+        return s.length();
     }
 }
