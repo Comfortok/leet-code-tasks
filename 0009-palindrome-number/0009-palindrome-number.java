@@ -1,5 +1,17 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        return String.valueOf(x).equals(new StringBuilder(String.valueOf(x)).reverse().toString());
+        if (x < 0) return false;
+        String val = String.valueOf(x);
+        int start = 0;
+        int end = val.length() - 1;
+        while (start <= end) {
+            if (val.charAt(start) != val.charAt(end)) {
+                return false;
+            }
+            start++;
+            end--;
+        }
+        
+        return true;
     }
 }
