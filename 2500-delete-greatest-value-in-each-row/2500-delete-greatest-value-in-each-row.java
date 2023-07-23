@@ -8,10 +8,12 @@ class Solution {
         for (int col = 0; col < grid[0].length; col++) {
             int max = 0;
             for (int row = 0; row < grid.length; row++) {
-                max = Math.max(max, grid[row][col]);
+                if (grid[row][col] > grid[max][col]) {
+                    max = row;
+                }
             }
             
-            result += max;
+            result += grid[max][col];
         }
         
         return result;
